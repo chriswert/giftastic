@@ -1,9 +1,10 @@
 $(document).ready(function(){
 
-    var golfers = ["jordan Speith", "phil mickelson", "brooks koepka", "jason day"]
+    var golfers = [ "Phil Mickelson", "Jordan Spieth", "Brooks Koepka", "Rory McIlroy"];
 
-    //$("button").on("click", function(){
-    function displayGolfers(){    
+    
+    function displayGolfers(){
+          
 
         var golfer = $(this).attr("data-person");
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -18,13 +19,17 @@ $(document).ready(function(){
             var results = response.data;
             console.log(response.data);
 
-            for (var i = 0; i < golfers.length; i++) {
+            for (var i = 0; i < golfer.length; i++) {
            
                 var gifDiv = $("<div>");
                 var rating = results[i].rating;
                 var p = $("<p>").text("Rating: " + rating);
                 var gifImage = $("<img>");
-                
+                // gifImage.attr("src", still);
+                // gifImage.attr("data-still", still);
+                // gifImage.attr("data-animate"), animated;
+                // gifImage.attr("data-state", "still");
+                // gifImage.addClass("gif-image");
 
                 gifImage.attr("src", results[i].images.fixed_height.url);
                 
@@ -33,8 +38,10 @@ $(document).ready(function(){
                 gifDiv.prepend(gifImage);
                  
                 $("#gifImages").prepend(gifDiv);  
+                console.log(gifImage);
             } 
-        });   
+        }); 
+      
     }  
     
         function renderButtons() {
@@ -43,7 +50,7 @@ $(document).ready(function(){
             for (var i = 0; i < golfers.length; i++) {
                 var a = $("<button>");
                 a.addClass("golfer-btn");
-                a.attr("data-name", golfers[1]);
+                a.attr("data-person", golfers[i]);
                 a.text(golfers[i]);
                 $("#buttons-view").append(a);
             }
@@ -58,83 +65,27 @@ $(document).ready(function(){
 
         $(document).on("click", ".golfer-btn", displayGolfers);
         renderButtons();
+
+        //Pausing and animating code
+
+        // $(document).on("click", ".gif-image", function() {
+        //     var state = $(this).attr("data-state");                
+
+        //     if (state === "still") {
+        //         $(this).attr("src", $(this).attr("data-animate"));
+        //         $(this).attr("data-state", "animate");
+        //     }
+        //     else {
+        //         $(this).attr("src", $(this).attr("data-still"));
+        //         $(this).attr("data-state", "still");                   
+        //     }  
+        // });
     
-    //     .then(function (response){
-    //         var results = response.data;
-    //        // console.log(response.data);
-
-    //         for (var i = 0; i < results.length; i++) {
-           
-    //             var gifDiv = $("<div>");
-    //             var rating = results[i].rating;
-    //             var p = $("<p>").text("Rating: " + rating);
-    //             var gifImage = $("<img>");
-                
-
-    //             gifImage.attr("src", results[i].images.fixed_height.url);
-                
-
-    //             gifDiv.prepend(p);
-    //             gifDiv.prepend(gifImage);
-                 
-    //             $("#gifImages").prepend(gifDiv);  
-    //         }  
-              
-
-         
-    //     });
-    //     //Pausing and animating code
-
-    //     $("#gifImgages").on("click", function() {
-    //         var state = $(this).attr("data-state");                
-
-    //         if (state === "still") {
-    //             $(this).attr("src", $(this).attr("data-animate"));
-    //             $(this).attr("data-state", "animate");
-    //         }
-    //         else {
-    //             $(this).attr("src", $(this).attr("data-still"));
-    //             $(this).attr("data-state", "still");                   
-    //         }  
-            
-    //         //inputing a new golfers button
-
-    //         // function rednerButtons(){
-    //         //     $("#buttons-view").empty();
-    //         //     for (var i = 0, i < golfers.lentth)
-
-    //         // }
-    //         function renderButtons(){
-
-    //             $("#gif").empty();
-
-    //             for (var i=0; i < golfers.length; i++) {
-    //                 var a = $("<button>");
-    //                 a.addClass("golfer-btn");
-    //                 a.attr("data-name", golfers[i]);
-    //                 a.text(golfers[i]);
-    //                 $("#buttons-view").append(a);
-    //             }
-    //         }
-
-    //         $("#select-golfer").on("click", function(event) {
-    //             event.preventDefault();
-    //             var inputGolfer = $("#golfer-input").val().trim();
-                
-    //             golfers.push(person);
-
-    //             renderButtons();
-
-    //             //person(inputGolfer);
-    //         });
-    //         $(document).on("click", ".golfer-btn",)
-    // });
+    
 
 
 
-
-
-    // });
+   
 
 
 
