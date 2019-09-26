@@ -30,8 +30,8 @@ $(document).ready(function(){
             for (var i = 0; i < results.length; i++) {
            
                 var gifDiv = $("<div>");
-                var rating = results[i].rating;
-                var p = $("<p>").text("Rating: " + rating);
+                var rating = results[i].rating;            
+                var p = $("<p>").text("Rating: " + rating,);
                 var animated = results[i].images.fixed_height.url;
                 var still = results[i].images.fixed_height_still.url;
                 console.log(animated, still);
@@ -50,14 +50,15 @@ $(document).ready(function(){
 
                 gifDiv.prepend(p);
                 gifDiv.prepend(gifImage);
-                 
+
                 $("#gifImages").prepend(gifDiv);  
                 console.log(gifImage);
             } 
 
             
         }); 
-      
+       
+        
     }  
         //create the function to add the buttons on the array
 
@@ -99,6 +100,9 @@ $(document).ready(function(){
                 $(this).attr("src", $(this).attr("data-still"));
                 $(this).attr("data-state", "still");                   
             }  
+
+            let button = GPHGifButton()
+
         });
     
     
